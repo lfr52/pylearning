@@ -1,0 +1,76 @@
+-- DDL数据定义
+use world;
+
+show tables;
+
+create table student(
+	id int,
+	name varchar(10),
+	age int
+);
+
+drop table student ;
+
+
+-- DML数据操作
+insert into student (id) values(1), (2), (3);
+
+insert into student (id, name, age) values(4, '小王', 20),(5, '小林', 30); -- 列名可省略
+
+
+delete from student where id = 1;  -- where条件可选
+
+delete  from student where id < 3; 
+
+
+update student set name = '小张' where id = 4;  -- where条件可选
+
+
+-- DQL数据查询
+# 建表
+CREATE TABLE student(
+id INT,
+name VARCHAR(20),
+age INT,
+gender VARCHAR(10)
+);
+# 插入数据
+INSERT INTO student VALUES(10001, '周杰轮', 31, '男'), 
+	(10002, '王力鸿', 33, '男'), 
+	(10003, '蔡依琳', 35, '女'), 
+	(10004, '林志灵', 36, '女'), 
+	(10005, '刘德滑', 33, '男'), 
+	(10006, '张大山', 10, '男'), 
+	(10007, '刘志龙', 11, '男'), 
+	(10008, '王潇潇', 33, '女'), 
+	(10009, '张一梅', 20, '女'), 
+	(10010, '王一倩', 13, '女'), 
+	(10011, '陈一迅', 31, '男'), 
+	(10012, '张晓光', 33, '男'),
+	(10013, '李大晓', 15, '男'), 
+	(10014, '吕甜甜', 36, '女'), 
+	(10015, '曾悦悦', 31, '女'), 
+	(10016, '刘佳慧', 21, '女'), 
+	(10017, '项羽凡', 23, '男'), 
+	(10018, '刘德强', 26, '男'), 
+	(10019, '王强强', 11, '男'), 
+	(10020, '林志慧', 25, '女');
+-- 展示数据
+select id, name from student; 
+select * from student; 
+-- 过滤
+select * from student where age > 20;
+
+-- 分组聚合
+select gender, avg(age), max(age), min(age), sum(age), count(*)  from student group by gender -- group by 出现哪个列，哪个列才能出现在select中
+
+-- 结果排序
+select * from student where age > 20 order by age asc; -- asc升序(默认) desc降序
+
+-- 结果分页
+select * from student limit 10;  -- 显示10条
+select * from student limit 10, 5; -- 跳过前10条，从11条开始显示5条
+
+select age, count(*)  from student where age > 20 group by age order by age;
+
+
